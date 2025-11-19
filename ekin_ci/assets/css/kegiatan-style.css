@@ -1,0 +1,128 @@
+/* > 1350px */
+.swal2-popup {
+	font-size: 1.6rem !important;
+}
+
+.topmenu {
+	height: 60px;
+	margin-bottom: -18px;
+	margin-left: 10px;
+	position: relative;
+	border: 1px solid #c8ced3;
+	border-radius: 0.5rem;
+	line-height: 40px;
+	/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.12); */
+}
+
+.info-box-icon-ekin {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	display: block;
+	float: left;
+	height: 40px;
+	width: 40px;
+	text-align: center;
+	font-size: 20px;
+	line-height: 40px;
+	background: rgba(0, 0, 0, 0.1);
+	margin-right: 4px;
+}
+
+/* 1260px - 1435px */
+@media (max-width: 1435px) {
+
+	.btn-group-lg>.btn,
+	.btn-lg {
+		padding: 10px 16px;
+		font-size: 13.5px;
+		/* font-weight: bold; */
+	}
+}
+
+/* 1055px - 1259px */
+@media (max-width: 1259px) {
+
+	.btn-group-lg>.btn,
+	.btn-lg {
+		padding: 10px 16px;
+		font-size: 11px;
+	}
+
+	.info-box-icon-ekin-mobile {
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		border-bottom-right-radius: 3px;
+		border-bottom-left-radius: 3px;
+		float: left;
+		height: 20px;
+		width: 20px;
+		margin-top: 10px;
+		text-align: center;
+		font-size: 10px;
+		line-height: 20px;
+		background: rgba(0, 0, 0, 0.1);
+		margin-right: 2px;
+	}
+}
+
+/* 905px - 1054px */
+@media (max-width: 1054px) {
+
+	.btn-group-lg>.btn,
+	.btn-lg {
+		padding: 10px 16px;
+		font-size: 10px;
+	}
+
+	.info-box-icon-ekin-mobile {
+		display: none;
+	}
+}
+
+@media (max-width: 768px) {
+	.topmenu {
+		display: none;
+	}
+
+	.info-box-icon-ekin {
+		display: none;
+	}
+
+	.topmenu-mobile {
+		display: inline-table;
+		height: 30px;
+		margin-left: 0;
+		margin-bottom: 6px;
+		border: 1px solid #c8ced3;
+		border-radius: 0.5rem;
+		padding-top: 0px;
+		padding-right: 10px;
+		padding-bottom: 0px;
+		padding-left: 10px;
+		font-size: 14px;
+		line-height: 30px;
+		/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.12); */
+	}
+
+	.info-box-icon-ekin-mobile {
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		border-bottom-right-radius: 3px;
+		border-bottom-left-radius: 3px;
+		/* display: block; */
+		float: left;
+		height: 20px;
+		width: 20px;
+		text-align: center;
+		font-size: 10px;
+		line-height: 20px;
+		background: rgba(0, 0, 0, 0.1);
+		margin-right: 2px;
+	}
+
+	.form-inline {
+		display: grid !important;
+	}
+}

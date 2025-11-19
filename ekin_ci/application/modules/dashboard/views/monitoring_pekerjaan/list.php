@@ -1,0 +1,219 @@
+<link rel="stylesheet" href="<?php echo base_url('assets/plugin/sweetalert2/dist/sweetalert2.min.css'); ?>">
+<style>
+.swal2-popup {
+  font-size: 1.6rem !important;
+}
+
+.cssload-container {
+	width: 100%;
+	text-align: center;
+}
+
+.cssload-speeding-wheel {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 68%;
+  	left: 49%;
+	margin: 0 auto;
+	border: 2px solid rgba(58,196,175,0.53);
+	border-radius: 50%;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	animation: cssload-spin 1250ms infinite linear;
+		-o-animation: cssload-spin 1250ms infinite linear;
+		-ms-animation: cssload-spin 1250ms infinite linear;
+		-webkit-animation: cssload-spin 1250ms infinite linear;
+		-moz-animation: cssload-spin 1250ms infinite linear;
+	z-index:300;
+}
+
+@keyframes cssload-spin {
+	100%{ transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-o-keyframes cssload-spin {
+	100%{ -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-ms-keyframes cssload-spin {
+	100%{ -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-webkit-keyframes cssload-spin {
+	100%{ -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-moz-keyframes cssload-spin {
+	100%{ -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+</style>
+<script src="<?php echo base_url('assets/plugin/sweetalert2/dist/sweetalert2.min.js'); ?>"></script>
+
+<!-- Main content -->
+<section class="content" data-id_groups="<?php echo get_session('id_groups'); ?>" data-updated="<?php echo $_updated; ?>" data-deleted="<?php echo $_deleted; ?>">
+
+	<!-- Your Page Content Here -->
+	<div class="box">
+		<div class="box-header with-border">
+			<div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <select class="form-control" name="selected_year" onchange="getData()">
+							<option value="">- Pilih Tahun -</option>
+							<?php if ($all_year): ?>
+							<?php foreach ($all_year as $row): ?>
+							<option value="<?php echo $row->year; ?>"
+								<?php echo $row->year == date('Y') ? 'selected' : ''; ?>><?php echo $row->year; ?>
+							</option>
+							<?php endforeach;?>
+							<?php endif;?>
+						</select>
+					</div>
+				</div>
+                <div class="col-md-2">
+					<div class="form-group">
+                        <select class="form-control" name="selected_month" onchange="getData()">
+							<option value="">- Pilih Bulan -</option>
+							<?php if ($all_month): ?>
+							<?php foreach ($all_month as $row): ?>
+                            <option value="<?php echo $row->month; ?>" <?php echo isset($month) ? ($month == $row->month ? 'selected' : '') : ''; ?>><?php echo $row->month_text; ?></option>
+							<?php endforeach;?>
+							<?php endif;?>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<select class="form-control select2" name="selected_sopd" onchange="getData()">
+							<?php if (get_session('id_groups') == '1' || get_session('id_groups') == '5'): ?>
+							<option value="">- Pilih SOPD -</option>
+							<?php endif;?>
+							<?php if ($all_sopd): ?>
+							<?php foreach ($all_sopd as $row): ?>
+							<option value="<?php echo encode_crypt($row->KD_UNOR); ?>"><?php echo $row->NM_UNOR; ?>
+							</option>
+							<?php endforeach;?>
+							<?php endif;?>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="box-body" style="padding-top: 0;">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-responsive">
+						<?php alert_message_dashboard();?>
+						<table id="datatableMonitoring" class="table table-striped table-bordered" style="width: 100%;">
+							<thead>
+								<tr>
+									<th rowspan="0" class="text-center th-top">No</th>
+									<th rowspan="0" class="text-center th-top">Foto</th>
+									<th rowspan="0" class="text-center th-top">Nama</th>
+                                    <th rowspan="0" class="text-center th-top">Jumlah Pekerjaan</th>
+                                    <th rowspan="0" class="text-center th-top">Pekerjaan yang Disetujui</th>
+                                    <th rowspan="0" class="text-center th-top">Waktu Efektif (Menit)</th>
+                                    <th rowspan="0" class="text-center th-top">Grade Penilaian</th>
+								</tr>
+							</thead>
+							<div id="load" class="cssload-container">
+								<div class="cssload-speeding-wheel"></div>
+							</div>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+<!-- /.content -->
+
+<script>
+    var datatable = $('#datatableMonitoring').DataTable({
+		"columns": [{
+				"width": "10"
+			},
+			null,
+			{
+				"width": "220"
+			},
+			null,
+			null,
+			null,
+            null,
+		],
+		"aaSorting": [],
+        "language": {
+			"emptyTable": " "
+		},
+	});
+
+    getData();
+
+	let _updated = $(".content").attr('data-updated');
+	let _deleted = $(".content").attr('data-deleted');
+	let _id_groups = $(".content").attr('data-id_groups');
+
+	function getData() {
+		$("#load").show(datatable.clear().draw());
+		let selected_year = $("select[name=selected_year]").val();
+		let selected_month = $("select[name=selected_month]").val();
+		let selected_sopd = $("select[name=selected_sopd]").val();
+		$.get(base_url + '/dashboard/monitoring_pekerjaan/get_data', {
+			selected_year: selected_year,
+			selected_month: selected_month,
+			selected_sopd: selected_sopd
+		})
+			.then(function (response) {
+				datatable.clear().draw();
+				let arrData = [];
+				$("#load").hide();
+				$.each(response, function (key, value) {
+					let photoPath = base_url + '/assets/img/upload/user/';
+					let no_image = base_url + '/assets/img/user.png';
+					let image = `<img src="${value.PNS_PHOTO != null ? photoPath + value.PNS_PHOTO : no_image}" width="60" title="${value.PNS_PNSNAM}" style="padding: 0px 0px 0px 0px;">`;
+					var wef = value.wkt_efektif / 60;
+					var wkt_efektif = value.wkt_efektif;
+					var presentase = 0;
+
+						if(wef >= 110){
+							var huruf_wef = 'A';
+						}else if(wef >= 94 && wef < 110){
+							var huruf_wef = 'B';
+						}else if(wef >= 68 && wef < 94){
+							var huruf_wef = 'C';
+						}else if(wef >= 42 && wef < 68){
+							var huruf_wef = 'D';
+						}else {
+							var huruf_wef = 'E';
+						}
+
+						if(wkt_efektif > 6750){
+							wkt_efektif = 6750;
+						}
+
+						if(wkt_efektif != 0) {
+							var tmp = wkt_efektif / 6750 * 100;
+							var presentase = tmp.toFixed(2);
+						}
+
+					arrData = [
+						"<div align='center'>" + ++key + "</div>",
+						"<div align='center'>" + image + "</div>",
+						((value.PNS_GLRDPN != null) ? value.PNS_GLRDPN + '. ' : '') + value.PNS_PNSNAM + ((value.PNS_GLRBLK != null) ? ', ' + value.PNS_GLRBLK : '')
+						+ "<br>" + 'NIP. ' + value.PNS_PNSNIP
+						+ "<br>" + value.NM_PKT + ' (' + value.NM_GOL + ')',
+						"<div align='center'>" + value.jml_pekerjaan + "</div>",
+						"<div align='center'>" + value.jml_disetujui + "</div>",
+						"<div align='center'>" + wkt_efektif + "</div>",
+						"<div align='center'><td><b style='font-size:25px'>" + huruf_wef + "</b><br /><i style='font-size:11px'><b>" + presentase + ' %' + "</b> Capaian Kinerja</i></td></div>",
+					];
+
+					datatable.row.add(arrData).draw(false);
+				});
+			});
+	}
+
+</script>

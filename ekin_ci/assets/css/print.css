@@ -1,0 +1,53 @@
+/**
+ * @Author: Awan Tengah
+ * @Date:   2019-08-09T20:14:37+07:00
+ * @Last modified by:   Awan Tengah
+ * @Last modified time: 2019-08-15T22:13:04+07:00
+ */
+ .container {
+     padding: 1em !important;
+ }
+ .table-inside td {
+     padding: 0.2em 0.2em 0.2em 0.3em;
+ }
+ #print-box .table-bordered>thead>tr>th,
+ #print-box .table-bordered>tbody>tr>th,
+ #print-box .table-bordered>tfoot>tr>th,
+ #print-box .table-bordered>thead>tr>td,
+ #print-box .table-bordered>tbody>tr>td,
+ #print-box .table-bordered>tfoot>tr>td,
+ .print-box .table-bordered>thead>tr>th,
+ .print-box .table-bordered>tbody>tr>th,
+ .print-box .table-bordered>tfoot>tr>th,
+ .print-box .table-bordered>thead>tr>td,
+ .print-box .table-bordered>tbody>tr>td,
+ .print-box .table-bordered>tfoot>tr>td {
+     border: 1px solid #ccc !important;
+ }
+ #print-box-back .table-bordered>thead>tr>th,
+ #print-box-back .table-bordered>tbody>tr>th,
+ #print-box-back .table-bordered>tfoot>tr>th,
+ #print-box-back .table-bordered>thead>tr>td,
+ #print-box-back .table-bordered>tbody>tr>td,
+ #print-box-back .table-bordered>tfoot>tr>td,
+ .print-box .table-bordered>thead>tr>th,
+ .print-box .table-bordered>tbody>tr>th,
+ .print-box .table-bordered>tfoot>tr>th,
+ .print-box .table-bordered>thead>tr>td,
+ .print-box .table-bordered>tbody>tr>td,
+ .print-box .table-bordered>tfoot>tr>td {
+     border: 1px solid #ccc !important;
+ }
+ #print-box ol,
+ .print-box ol {
+     padding-left: 1em !important;
+     margin-bottom: 0 !important;
+ }
+ .colon {
+     padding: 0 1em;
+     width: 10px !important;
+ }
+ .border>tbody>tr>td {
+     border: 1px solid #000;
+     padding: 0.5em;
+ }

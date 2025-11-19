@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+  ekin:
+    build: ./
+    image: "ekin_mura"
+    container_name: "ekin_mura"
+    ports:
+      - 3000:3000
+#    networks:
+#      - proxy
+    restart: always
+#networks:
+#  proxy:
+#    external: true

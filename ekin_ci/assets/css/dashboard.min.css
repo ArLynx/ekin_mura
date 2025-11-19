@@ -1,0 +1,10 @@
+/**
+ * @Author: Awan Tengah
+ * @Date:   2019-06-20T18:27:26+07:00
+ * @Last modified by:   Awan Tengah
+ * @Last modified time: 2019-08-09T22:14:54+07:00
+ */
+
+[ng-cloak]{display:none!important}.pagination>li>a{cursor:pointer}.table>thead:first-child>tr:first-child>th{cursor:pointer}.st-sort-ascent:before{content:'\25B2'}.st-sort-descent:before{content:'\25BC'}.ng-isolate-scope{text-align:left}.th-top{vertical-align:middle!important;text-align:center}.td-action{text-align:center;min-width:80px}.ul-action{min-width:50px}.attachment-block{display:inline-block}.box-saldo{margin:0;padding:1em}.text-muted{color:#9aa0ac!important}.info-box{box-shadow:0 1px 2px 0 rgba(0,0,0,.05);border:1px solid rgba(0,40,100,.12);border-radius:3px;min-height:auto!important}.info-box .box-header>.box-tools{top:1.2em}.box-saldo ul{list-style:none;padding-left:0}.box-saldo li a{display:block;margin:.5em}.table-borderless td,.table-borderless th{border:none!important}.th-action{min-width:114px}.margin-0{margin:0!important}.padding-0{padding:0!important}.modal-body{overflow:auto!important}.app-modal-window .modal-dialog {
+  width: 700px;
+}
