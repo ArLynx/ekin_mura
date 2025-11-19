@@ -12,4 +12,5 @@ jobs:
         run: docker build ./ekin_mura_golang/ -t anggaramandani/ekin_mura_golang:latest
       - name: Push Image to Docker Hub
         run: |
+          docker login -u anggaramandani -p ${{ secrets.DOKCER_HUB_TOKEN }}
           docker push anggaramandani/ekin_mura_golang:latest
